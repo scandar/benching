@@ -2,15 +2,24 @@
   "name": "bench-devalue",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bench": "vitest bench"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "devalue": "^5.0.0",
+    "handlebars": "^4.7.8",
+    "mustache": "^4.2.0",
+    "pug": "^3.0.3",
+    "sanitize-html": "^2.13.0",
     "vitest": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/mustache": "^4.2.5",
+    "@types/node": "^20.14.5",
+    "@types/pug": "^2.0.10"
   }
 }
