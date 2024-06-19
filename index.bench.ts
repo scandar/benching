@@ -11,6 +11,33 @@ const html = readFileSync("template.html").toString();
 const html2 = readFileSync("template2.html").toString();
 const compiledPug = pug.compileFile("template.pug");
 const compiledHB = Handlebars.compile(html2);
+const replacements = {
+  "<!-- one -->": str,
+  "<!-- two -->": str,
+  "<!-- three -->": str,
+  "<!-- four -->": str,
+  "<!-- five -->": str,
+  "<!-- six -->": str,
+  "<!-- seven -->": str,
+  "<!-- eight -->": str,
+  "<!-- nine -->": str,
+  "<!-- ten -->": str,
+  "<!-- eleven -->": str,
+};
+
+function processTemplate(
+  template: string,
+  replacements: { [key: string]: string }
+) {
+  let result = template;
+
+  // Using a single pass for replacements
+  for (const [placeholder, replacement] of Object.entries(replacements)) {
+    result = result.replace(placeholder, replacement);
+  }
+
+  return result;
+}
 
 bench(
   "pug",
@@ -87,6 +114,14 @@ bench(
       .replace("<!-- nine -->", str)
       .replace("<!-- ten -->", str)
       .replace("<!-- eleven -->", str);
+  },
+  { iterations }
+);
+
+bench(
+  "processTemplate",
+  () => {
+    processTemplate(html, replacements);
   },
   { iterations }
 );
