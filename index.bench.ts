@@ -5,11 +5,11 @@ import Mustache from "mustache";
 import { readFileSync } from "fs";
 
 const iterations = 20000;
-const str = "a".repeat(100_000);
+const str = "a".repeat(100_000); // mock a 100kb script
 
-const file = readFileSync("template.html").toString();
+const html = readFileSync("template.html").toString();
 const compiledPug = pug.compileFile("template.pug");
-const compiledHB = Handlebars.compile(file);
+const compiledHB = Handlebars.compile(html);
 
 bench(
   "pug",
@@ -54,7 +54,7 @@ bench(
 bench(
   "mustache",
   () => {
-    Mustache.render(file, {
+    Mustache.render(html, {
       one: str,
       two: str,
       three: str,
