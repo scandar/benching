@@ -4,7 +4,7 @@ import Handlebars from "handlebars";
 import Mustache from "mustache";
 import { readFileSync } from "fs";
 
-const iterations = 20000;
+const iterations = 10000;
 const str = "a".repeat(100_000); // mock a 100kb script
 
 const html = readFileSync("template.html").toString();
