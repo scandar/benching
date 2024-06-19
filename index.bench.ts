@@ -5,11 +5,12 @@ import Mustache from "mustache";
 import { readFileSync } from "fs";
 
 const iterations = 10000;
-const str = "a".repeat(100_000); // mock a 100kb script
+const str = "a".repeat(60_000);
 
 const html = readFileSync("template.html").toString();
+const html2 = readFileSync("template2.html").toString();
 const compiledPug = pug.compileFile("template.pug");
-const compiledHB = Handlebars.compile(html);
+const compiledHB = Handlebars.compile(html2);
 
 bench(
   "pug",
@@ -54,7 +55,7 @@ bench(
 bench(
   "mustache",
   () => {
-    Mustache.render(html, {
+    Mustache.render(html2, {
       one: str,
       two: str,
       three: str,
@@ -74,21 +75,6 @@ bench(
 bench(
   "replace",
   () => {
-    const html = `
-    <html>
-      <!-- one -->
-      <!-- two -->
-      <!-- three -->
-      <!-- four -->
-      <!-- five -->
-      <!-- six -->
-      <!-- seven -->
-      <!-- eight -->
-      <!-- nine -->
-      <!-- ten -->
-      <!-- eleven -->
-    </html>
-  `;
     html
       .replace("<!-- one -->", str)
       .replace("<!-- two -->", str)
